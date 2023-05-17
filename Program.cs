@@ -4,23 +4,22 @@ void Iterate(IEnumerable<Warrior>allWariors)
 {
 	foreach (var warrior in allWariors)
 	{
-		Console.WriteLine($"A Warrior {warrior.Name} shows up");
-		warrior.Attack();
+		Console.WriteLine($"A Warrior {warrior.Name} shows the power");
+		warrior.Poder();
 		Console.WriteLine();
 	}
 }
-var ninja = new Ninja();
-var boxer = new Boxer();
-var zombie = new Zombie();
-var karateka = new Karateka();
-var mazingerz = new Mazingerz();
-var goku = new Goku();
-var Warriors = new List<Warrior> { ninja,boxer,zombie,karateka,mazingerz,goku};
+Warrior ninja = new Ninja();
+Warrior superman = new Superman();
+Warrior zombie = new Zombie();
+Warrior spiderman = new Spiderman();
+Warrior goku = new Goku();
+var Warriors = new List<Warrior> { ninja,superman,zombie,spiderman,goku};
 Iterate(Warriors);
 abstract class Warrior
 {
 	public abstract string Name { get;}
-	public abstract void Attack();
+	public abstract void Poder();
 	
 }
 class Ninja
@@ -28,19 +27,19 @@ class Ninja
 {
 	public override string Name => "Ninja";
 
-    public override void Attack()
+    public override void Poder()
     {
-        Console.WriteLine("Nuchaku Strike!");
+        Console.WriteLine("Invisible!");
     }
 }
-class Boxer
+class Superman
     : Warrior
 {
-    public override string Name => "Boxer";
+    public override string Name => "superman";
 
-    public override void Attack()
+    public override void Poder()
     {
-        Console.WriteLine("Punch!");
+        Console.WriteLine("Fly!");
     }
 }
 class Zombie
@@ -48,39 +47,30 @@ class Zombie
 {
     public override string Name => "Zombie";
 
-    public override void Attack()
+    public override void Poder()
     {
-        Console.WriteLine("Bite!");
+        Console.WriteLine("Infection!");
     }
 }
-class Karateka
+class Spiderman
     : Warrior
 {
-    public override string Name => "Karateka";
+    public override string Name => "Spiderman";
 
-    public override void Attack()
+    public override void Poder()
     {
-        Console.WriteLine("Kick!");
+        Console.WriteLine("Superhuman Strength!");
     }
 }
-class Mazingerz
-    : Warrior
-{
-    public override string Name => "Mazingerz";
 
-    public override void Attack()
-    {
-        Console.WriteLine("Punch!");
-    }
-}
 class Goku
     : Warrior
 {
     public override string Name => "Goku";
 
-    public override void Attack()
+    public override void Poder()
     {
-        Console.WriteLine("hamehameha!");
+        Console.WriteLine("shape shifter!");
     }
 }
 
