@@ -14,7 +14,7 @@ var boxer = new Boxer();
 var zombie = new Zombie();
 var karateka = new Karateka();
 var mazingerz = new Mazingerz();
-var Warriors = new List<Warrior> { ninja,boxer,zombie,karateka};
+var Warriors = new List<Warrior> { ninja,boxer,zombie,karateka,mazingerz};
 Iterate(Warriors);
 abstract class Warrior
 {
