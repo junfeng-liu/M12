@@ -14,6 +14,7 @@ var boxer = new Boxer();
 var zombie = new Zombie();
 var karateka = new Karateka();
 var mazingerz = new Mazingerz();
+var goku = new Goku();
 var Warriors = new List<Warrior> { ninja,boxer,zombie,karateka,mazingerz};
 Iterate(Warriors);
 abstract class Warrior
@@ -70,6 +71,16 @@ class Mazingerz
     public override void Attack()
     {
         Console.WriteLine("Punch!");
+    }
+}
+class Goku
+    : Warrior
+{
+    public override string Name => "Goku";
+
+    public override void Attack()
+    {
+        Console.WriteLine("hamehameha!");
     }
 }
 
