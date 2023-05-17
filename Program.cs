@@ -1,76 +1,123 @@
-﻿using System.Threading;
-
-void Iterate(IEnumerable<Warrior>allWariors)
+﻿internal class Program
 {
-	foreach (var warrior in allWariors)
-	{
-		Console.WriteLine($"A Warrior {warrior.Name} shows the power");
-		warrior.Poder();
-		Console.WriteLine();
-	}
-}
-Warrior ninja = new Ninja();
-Warrior superman = new Superman();
-Warrior zombie = new Zombie();
-Warrior spiderman = new Spiderman();
-Warrior goku = new Goku();
-var Warriors = new List<Warrior> { ninja,superman,zombie,spiderman,goku};
-Iterate(Warriors);
-abstract class Warrior
-{
-	public abstract string Name { get;}
-	public abstract void Poder();
-	
-}
-class Ninja
-    : Warrior
-{
-	public override string Name => "Ninja";
-
-    public override void Poder()
+    private static void Main(string[] args)
     {
-        Console.WriteLine("Invisible!");
-    }
-}
-class Superman
-    : Warrior
-{
-    public override string Name => "superman";
-
-    public override void Poder()
-    {
-        Console.WriteLine("Fly!");
-    }
-}
-class Zombie
-    : Warrior
-{
-    public override string Name => "Zombie";
-
-    public override void Poder()
-    {
-        Console.WriteLine("Infection!");
-    }
-}
-class Spiderman
-    : Warrior
-{
-    public override string Name => "Spiderman";
-
-    public override void Poder()
-    {
-        Console.WriteLine("Superhuman Strength!");
+        void Iterate(IEnumerable<Warrior> allWariors)
+        {
+            foreach (var warrior in allWariors)
+            {
+                Console.WriteLine($"A Warrior {warrior.Name} shows the power");
+                warrior.Attack();
+                Console.WriteLine();
+            }
+        }
+        Warrior ninja = new Warrior(name: "Ninja", fight: new NunchukuStrike());
+        Warrior superman = new Warrior(name: "Superman", fight: new Punch());
+        Warrior zombie = new Warrior(name: "Zombie", fight: new Bite());
+        Warrior spiderman = new Warrior(name: "Spiderman", fight: new Kick()); ;
+        Warrior goku = new Warrior(name: "goku", fight: new Punch());
+        var Warriors = new List<Warrior> { ninja, superman, zombie, spiderman, goku };
+        Iterate(Warriors);
+        Console.WriteLine("### The Warriors Use His Power ");
+        ninja.ChangeFight(new Invisible());
+        superman.ChangeFight(new Cyclops());
+        zombie.ChangeFight(new infection());
+        spiderman.ChangeFight(new spidersensor());
+        goku.ChangeFight(new KameHameHa());
+        Iterate(Warriors);
     }
 }
 
-class Goku
-    : Warrior
+interface IFight
 {
-    public override string Name => "Goku";
-
-    public override void Poder()
+    void Fight();
+}
+class Punch
+    : IFight
+{
+    public void Fight()
     {
-        Console.WriteLine("shape shifter!");
+        Console.WriteLine("Punch");
     }
 }
 
+class Kick
+    : IFight
+{
+    public void Fight()
+    {
+        Console.WriteLine("Kick");
+    }
+}
+class NunchukuStrike
+    : IFight
+{
+    public void Fight()
+    {
+        Console.WriteLine("Nunchuku Strike");
+    }
+}
+class Bite
+    : IFight
+{
+    public void Fight()
+    {
+        Console.WriteLine("Bite");
+    }
+}
+class Invisible
+    : IFight
+{
+    public void Fight()
+    {
+        Console.WriteLine("Invisible");
+    }
+}
+class Cyclops
+    : IFight
+{
+    public void Fight()
+    {
+        Console.WriteLine("Cyclops");
+    }
+}
+class spidersensor
+    : IFight
+{
+    public void Fight()
+    {
+        Console.WriteLine("spider sensor");
+    }
+}
+class infection
+    : IFight
+{
+    public void Fight()
+    {
+        Console.WriteLine("infection");
+    }
+}
+class KameHameHa
+   : IFight
+{
+    public void Fight()
+    {
+        Console.WriteLine("Kame Hame Ha");
+    }
+}
+class Warrior
+{
+    private  IFight _fight;
+    public  string Name { get; }
+    public Warrior (string name, IFight fight)
+    {
+        Name = name;
+        _fight = fight;
+    }
+    public void Attack()
+    {
+        _fight.Fight();
+    }
+    public void ChangeFight(IFight fight)
+    { _fight = fight; }
+}
